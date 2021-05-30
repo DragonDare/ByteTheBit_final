@@ -1,0 +1,32 @@
+<p id="result">
+    Wait..
+</p>
+<p id="result2">
+    
+</p>
+<script>
+   const username=localStorage.getItem('username')
+   document.getElementById("result").innerHTML = username
+   url='https://api.atra.io/prod/v1/dtables/records?tableId=d7c687b6-d099-4126-bd00-2b13c4827f98'
+   fetch(url,
+   {
+    method:'GET',
+    headers:{
+                'x-api-key': 'bckXY2gM1r7GUXjUtOztaayJsGjPmcKw68nrHw7V',    
+            }
+   })
+   .then(response =>response.json())
+   .then(result => i=result['live']) //username
+   .then(()=>console.log(i))
+   .then(function getEmail(){
+       for(j=0;j<8;j++){
+           //console.log(i[j]['1'][2])
+           if(i[j]['1'][2]==username){                   //  i=result['live']['0']['1'][2]) //username
+               console.log(i[j]['1'][3])
+               document.getElementById("result2").innerHTML = i[j]['1'][3]
+           }
+       }
+   
+   
+   })
+</script>
