@@ -1,0 +1,47 @@
+<form action="" id="register" name="register" method="POST">
+
+<input type="text" name="name" ><br>
+<input type="text" name="email" ><br>
+<input type="text" name="username" ><br>
+<input type="text" name="password" ><br>
+<input type="text" name="etheraddress" ><br>
+<input type= "submit" onclick="submitRegisterInfo(event)" value="Submit">
+
+</form>
+<p id='demo'>
+    Failed
+</p>
+<script>
+    function submitRegisterInfo(){
+        event.preventDefault();
+
+        document.getElementById('demo').innerHTML= 'Please wait while your account is being created......'
+        let _data={
+                "tableId": "d7c687b6-d099-4126-bd00-2b13c4827f98",
+                "record": [
+                    document.register.name.value,
+                    document.register.email.value,
+                    document.register.username.value,
+                    document.register.password.value,                    
+                    "0x59aF999BB82B8431d03B3c9059DFb442Ecb2B26c"                
+                ]
+            }
+
+        fetch('https://api.atra.io/prod/v1/dtables/records',
+        {
+            method:'POST',
+            headers:{
+                'x-api-key': 'bckXY2gM1r7GUXjUtOztaayJsGjPmcKw68nrHw7V',    
+            },
+            body: JSON.stringify(_data)
+         })
+         .then(response => response.text())
+         .then(result => console.log(result))
+        
+        setTimeout(function(){
+            window.location.href = 'shopping.html';
+            
+            
+         }, 15000)
+        }
+</script>

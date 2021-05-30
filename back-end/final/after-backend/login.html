@@ -1,0 +1,40 @@
+<form action="" id="login" name="login" method="POST">
+
+    
+    <input type="text" name="username" ><br>
+    <input type="text" name="password" ><br>
+    
+    <input type= "submit" onclick="retreiveInfo(event)" value="Submit">
+    
+    </form>
+    <p id='demo'>
+        Failed
+    </p>
+    <script>
+        function retreiveInfo(){
+            event.preventDefault();
+    
+            document.getElementById('demo').innerHTML= 'Wait..'
+    
+            fetch('https://api.atra.io/prod/v1/dtables/records?tableId=d7c687b6-d099-4126-bd00-2b13c4827f98',
+            {
+                method:'GET',
+                headers:{
+                    'x-api-key': 'bckXY2gM1r7GUXjUtOztaayJsGjPmcKw68nrHw7V',    
+                },
+                
+             })
+             .then(response => response.text())
+             .then(result => document.getElementById('demo').innerHTML= result)
+             .then(function(){
+                 localStorage.setItem('username',document.login.username.value)
+                 document.getElementById('demo').innerHTML= localStorage.getItem('username')
+                 setTimeout(function(){
+                    window.location.href = 'shopping.html';           
+            
+                    }, 6000)
+             })
+            
+            
+            }
+    </script>
